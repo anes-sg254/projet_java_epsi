@@ -2,10 +2,9 @@ package galerie.phototheque.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalTime;
 @Entity
 
-public class User {
+public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_user;
@@ -17,7 +16,7 @@ public class User {
     private String prenom;
     private String nom;
     private String mot_de_pass;
-    public User(String pseudo, Role role, String prenom, String nom, String mot_de_pass,Long id_user) {
+    public Utilisateur(String pseudo, Role role, String prenom, String nom, String mot_de_pass, Long id_user) {
         this.pseudo=pseudo;
         this.role=role;
         this.prenom=prenom;

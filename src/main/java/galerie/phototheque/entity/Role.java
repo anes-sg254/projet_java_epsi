@@ -1,7 +1,10 @@
 package galerie.phototheque.entity;
-
+import jakarta.persistence.*;
+@Entity
 public class Role {
     private String type_role;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_role;
 
     public Role(String type_role,Long id_role) {
