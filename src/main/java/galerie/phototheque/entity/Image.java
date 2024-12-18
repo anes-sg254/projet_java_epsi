@@ -15,7 +15,15 @@ public class Image {
 
     @Id
     @GeneratedValue
+    @Setter
+    @Getter
     private Long id_image;
+
+    @ManyToOne
+    @Setter
+    @Getter
+    private Utilisateur utilisateur;
+
 
     @Setter
     @Getter
