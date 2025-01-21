@@ -16,6 +16,7 @@ public class Utilisateur {
     private String prenom;
     private String nom;
     private String mot_de_pass;
+    public Utilisateur() {}
     public Utilisateur(String pseudo, Role role, String prenom, String nom, String mot_de_pass, Long id_user) {
         this.pseudo=pseudo;
         this.role=role;
