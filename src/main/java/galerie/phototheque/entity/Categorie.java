@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Primary;
 public class Categorie {
     @Id
     @GeneratedValue
+    @Setter
+    @Getter
     private Long id_categorie;
 
     @Setter
