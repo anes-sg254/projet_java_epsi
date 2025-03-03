@@ -27,9 +27,9 @@ public class PhotothequeProjectApplication implements CommandLineRunner {
 		ajouterUser();
 	}
 	void ajouterRole(){
-		Role role = new Role();
-		role.setType_role("ROLE_USER");
-		roleServiceImp.addRole(role);
+		//Role role = new Role();
+		//role.setType_role("ROLE_USER");
+		//roleServiceImp.addRole(role);
 	}
 	void ajouterUser(){
 

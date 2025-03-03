@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("phototheque/")
 public class ImageServiceImp {
-    @Autowired
-    private ImageServiceImp imageService;
+
     @Autowired
     private UtilisateurServiceImp utilisateurService;
     @Autowired
