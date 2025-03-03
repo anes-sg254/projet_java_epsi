@@ -1,13 +1,19 @@
 package galerie.phototheque.service;
 
 import galerie.phototheque.entity.Categorie;
-
+import galerie.phototheque.repository.CategorieRepository;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
-public interface CategorieService {
-    List<Categorie> getAll();
-    void addCategorie (Categorie categorie);
-    void updateCategorie(Categorie categorie);
-    void deleteCategorie(Categorie categorie);
-    Categorie getCategorieById(Long id);
+@Service
+public class CategorieService {
+    private final CategorieRepository categorieRepository;
+
+    public CategorieService(CategorieRepository categorieRepository) {
+        this.categorieRepository = categorieRepository;
+    }
+
+    public List<Categorie> getAllCategories() {
+        return categorieRepository.findAll();
+    }
 }

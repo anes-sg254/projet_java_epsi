@@ -1,13 +1,19 @@
 package galerie.phototheque.service;
 
 import galerie.phototheque.entity.Role;
-
+import galerie.phototheque.repository.RoleRepository;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
-public interface RoleService {
-    List<Role> roles();
-    void addRole (Role role);
-    void updateRole(Role role);
-    void deleteRole(Role role);
-    Role getRoleById(Long id);
+@Service
+public class RoleService {
+    private final RoleRepository roleRepository;
+
+    public RoleService(RoleRepository roleRepository) {
+        this.roleRepository = roleRepository;
+    }
+
+    public List<Role> getAllRoles() {
+        return roleRepository.findAll();
+    }
 }

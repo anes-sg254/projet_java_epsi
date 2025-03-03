@@ -1,15 +1,11 @@
 package galerie.phototheque.dto;
 
-public class RoleDto {
+import lombok.Getter;
+import lombok.Setter;
 
-    private String type_role;
-
-    private Long id_role;
-
-    public RoleDto(){}
-
-    public RoleDto(String type_role,Long id_role) {
-        this.type_role=type_role;
-        this.id_role=id_role;
-    }
+@Getter
+@Setter
+public class RoleDTO {
+    private Long id;
+    private String typeRole;
 }

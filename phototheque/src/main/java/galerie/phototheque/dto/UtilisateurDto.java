@@ -1,20 +1,15 @@
 package galerie.phototheque.dto;
 
-import galerie.phototheque.entity.Role;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
-public class UtilisateurDto {
-
-    private Long id_user;
-
-
+@Getter
+@Setter
+public class UtilisateurDTO {
+    private Long id;
     private String pseudo;
-    private Role role;
     private String prenom;
     private String nom;
-    private String mot_de_pass;
-    public UtilisateurDto() {}
+    private String motDePasse;
+    private String role;
 }

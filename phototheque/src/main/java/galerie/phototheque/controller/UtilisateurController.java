@@ -1,8 +1,21 @@
-package galerie.phototheque.controler;
+package galerie.phototheque.controller;
 
-import org.springframework.stereotype.Controller;
+import galerie.phototheque.entity.Utilisateur;
+import galerie.phototheque.service.UtilisateurService;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api/utilisateurs")
 public class UtilisateurController {
+    private final UtilisateurService utilisateurService;
 
+    public UtilisateurController(UtilisateurService utilisateurService) {
+        this.utilisateurService = utilisateurService;
+    }
+
+    @GetMapping
+    public List<Utilisateur> getAllUtilisateurs() {
+        return utilisateurService.getAllUtilisateurs();
+    }
 }
