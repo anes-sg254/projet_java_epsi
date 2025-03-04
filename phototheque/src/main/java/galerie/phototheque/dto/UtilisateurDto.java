@@ -1,11 +1,11 @@
 package galerie.phototheque.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
-public class UtilisateurDTO {
+@Data
+public class UtilisateurDto {
     private Long id;
     private String pseudo;
     private String prenom;

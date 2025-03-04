@@ -1,6 +1,6 @@
 package galerie.phototheque.controller;
 
-import galerie.phototheque.dto.ImageDTO;
+import galerie.phototheque.dto.ImageDto;
 import galerie.phototheque.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ public class ImageController {
     private ImageService imageService;
 
     @GetMapping
-    public List<ImageDTO> getAllImages() {
+    public List<ImageDto> getAllImages() {
         return imageService.getAllImages();
     }
 }

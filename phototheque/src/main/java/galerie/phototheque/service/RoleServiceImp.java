@@ -12,8 +12,13 @@ import java.util.Optional;
 public class RoleServiceImp implements  RoleService{
     @Autowired
     private RoleRepository roleRepository;
-    @Override
+
     public List<Role> roles() {
+        return roleRepository.findAll();
+    }
+
+    @Override
+    public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
 

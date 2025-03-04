@@ -6,14 +6,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class RoleService {
-    private final RoleRepository roleRepository;
+public interface RoleService {
 
-    public RoleService(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
-
-    public List<Role> getAllRoles() {
-        return roleRepository.findAll();
-    }
+    List<Role> getAllRoles();
+    void addRole(Role role);
+    void updateRole(Role role);
+    void deleteRole(Role role);
+    Role getRoleById(Long id);
 }

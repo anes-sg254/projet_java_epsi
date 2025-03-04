@@ -24,6 +24,4 @@ public class Telechargement {
 
     private Date dateTelechargement;
 
-    public Telechargement() {}
 }
-

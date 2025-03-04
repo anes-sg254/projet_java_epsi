@@ -12,21 +12,22 @@ import java.util.Optional;
 public class UtilisateurServiceImp implements UtilisateurService {
     @Autowired
     private UtilisateurRepository utilisateurRepository;
-    @Override
+    
     public List<Utilisateur> getAll() {
         return utilisateurRepository.findAll();
     }
-
+    @Override
+    public List<Utilisateur> getAllUtilisateurs() {
+        return utilisateurRepository.findAll();
+    }
     @Override
     public void addUtilisateur(Utilisateur utilisateur) {
         utilisateurRepository.save(utilisateur);
-
     }
 
     @Override
     public void updateUtilisateur(Utilisateur utilisateur) {
         utilisateurRepository.save(utilisateur);
-
     }
 
     @Override

@@ -6,14 +6,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CategorieService {
-    private final CategorieRepository categorieRepository;
+public interface CategorieService {
 
-    public CategorieService(CategorieRepository categorieRepository) {
-        this.categorieRepository = categorieRepository;
-    }
-
-    public List<Categorie> getAllCategories() {
-        return categorieRepository.findAll();
-    }
+    List<Categorie> getAllCategories();
+    void addCategorie(Categorie categorie);
+    void updateCategorie(Categorie categorie);
+    void deleteCategorie(Categorie categorie);
+    Categorie getCategorieById(Long id);
 }

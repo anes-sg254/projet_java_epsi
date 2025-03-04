@@ -1,6 +1,6 @@
 package galerie.phototheque.services;
 
-import galerie.phototheque.dto.ImageDTO;
+import galerie.phototheque.dto.ImageDto;
 import galerie.phototheque.entity.Image;
 import galerie.phototheque.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +13,12 @@ public class ImageService {
     @Autowired
     private ImageRepository imageRepository;
 
-    public List<ImageDTO> getAllImages() {
+    public List<ImageDto> getAllImages() {
         return imageRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
-    private ImageDTO convertToDTO(Image image) {
-        ImageDTO dto = new ImageDTO();
+    private ImageDto convertToDTO(Image image) {
+        ImageDto dto = new ImageDto();
         dto.setId(image.getIdImage());
         dto.setNom(image.getNom());
         dto.setDescription(image.getDescription());

@@ -1,6 +1,7 @@
 package galerie.phototheque.service;
 
 import galerie.phototheque.entity.Categorie;
+import galerie.phototheque.entity.Utilisateur;
 import galerie.phototheque.repository.CategorieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,14 @@ public class CategorieServiceImp implements CategorieService{
 
     @Autowired
     private CategorieRepository CategorieRepository;
-    @Override
+    @Autowired
+    private CategorieRepository categorieRepository;
+
     public List<Categorie> getAll() {
+        return List.of();
+    }
+    @Override
+    public List<Categorie> getAllCategories(){
         return List.of();
     }
 
