@@ -1,33 +1,20 @@
-package galerie.phototheque.services;
+package galerie.phototheque.service;
 
-import galerie.phototheque.dto.ImageDto;
-import galerie.phototheque.entity.Image;
-import galerie.phototheque.repositories.ImageRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import galerie.phototheque.entity.Images;
+import org.springframework.data.domain.Page;
+
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
-@Service
-public class ImageService {
-    @Autowired
-    private ImageRepository imageRepository;
-
-    public List<ImageDto> getAllImages() {
-        return imageRepository.findAll().stream().map(this::convertToDTO).collect(Collectors.toList());
-    }
-
-    private ImageDto convertToDTO(Image image) {
-        ImageDto dto = new ImageDto();
-        dto.setId(image.getIdImage());
-        dto.setNom(image.getNom());
-        dto.setDescription(image.getDescription());
-        dto.setCategorie(image.getCategorie().getNom());
-        dto.setPresenceIndividu(image.isPresenceIndividu());
-        dto.setCompteurTelechargements(image.getCompteurTelechargements());
-        dto.setUrlTailleReelle(image.getUrlTailleReelle());
-        dto.setUrlMiniature(image.getUrlMiniature());
-        dto.setDateCreation(image.getDateCreation());
-        return dto;
-    }
+public interface ImageService {
+    public Map<String, String> generateSignedUrl(String filename);
+    public void uploadFile(String signedUrl, byte[] fileContent, String contentType);
+    public Map<String, Object> getImageDescription(String filename);
+    public List<Images> getLatestImages();
+    public Images getImageDetails(Long id);
+    public String getOriginalImageUrl(Long id);
+    public String getThumbnailImageUrl(Long id);
+    public List<Images> searchImages(String name, String description, int page, int size);
+    public Images updateImageDetails(Long id, Images imageDetails);
+    public void deleteImage(Long id);
 }
