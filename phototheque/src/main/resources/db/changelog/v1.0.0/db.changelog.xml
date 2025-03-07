@@ -8,7 +8,5 @@
     <changeSet id="v1.0.0-create-user" author="ANES">
         <sqlFile path="v1.0.0-create-user.sql" relativeToChangelogFile="true"/>
     </changeSet>
-    <changeSet id="v1.0.0-create-user" author="ANES">
-        <sqlFile path="v1.0.0-create-user.sql" relativeToChangelogFile="true"/>
-    </changeSet>
+
 </databaseChangeLog>
