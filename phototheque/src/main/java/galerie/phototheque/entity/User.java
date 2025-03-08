@@ -48,6 +48,9 @@ public class User {
     public boolean isActif() {
         return this.actif=true;
     }
+    public Long getId() {
+        return this.id;
+    }
 
 
 }

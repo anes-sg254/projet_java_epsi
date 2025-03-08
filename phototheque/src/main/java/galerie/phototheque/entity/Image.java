@@ -16,9 +16,8 @@ public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "date_creation", nullable = false)
-    private LocalDateTime dateCreation;
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime dateCreation = LocalDateTime.now();
     @Column(nullable = false)
     private String nom;
 
@@ -61,5 +60,25 @@ public class Image {
     public void setDateUpload(LocalDateTime dateUpload) {
         this.dateUpload = dateUpload;
     }
+
+    public String getNom() {
+        return this.nom;
+    }
+    public String getDescription() {
+        return this.nom;
+    }
+    public String getUrl() {
+        return this.url;
+    }
+    public User getUtilisateur() {
+        return this.utilisateur;
+    }
+    public LocalDateTime getDateCreation() {
+         return this.dateCreation;
+    }
+
+
+
+
 
 }
