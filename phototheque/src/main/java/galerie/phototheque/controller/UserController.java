@@ -1,10 +1,11 @@
 package galerie.phototheque.controller;
-
+import org.springframework.http.HttpStatus;
 import galerie.phototheque.entity.User;
 import galerie.phototheque.service.CategorieService;
 import galerie.phototheque.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import javax.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/users")
-
+@RequestMapping("users")
 public class UserController {
 
     private final UserService userService;
@@ -37,13 +37,19 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        return ResponseEntity.ok(userService.createUser(user));
+    public ResponseEntity<User> createUser(@RequestBody @Valid User user) {
+        if (user.getNom() == null || user.getNom().isEmpty()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        User savedUser = userService.saveUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
-
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        if (userService.deleteUser(id)) {
+            return ResponseEntity.ok("Utilisateur désactivé avec succès");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Utilisateur non trouvé");
+        }
     }
 }

@@ -6,9 +6,9 @@ import lombok.Data;
 @Data
 public class UserDTO {
     private Long id;
-    private String pseudo;
-    private String firstName;
-    private String lastName;
+    private String nom;
+    private String email;
+    private String password;
     private Role role;
     private boolean isActive;
 }

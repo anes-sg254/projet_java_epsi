@@ -34,7 +34,7 @@ public class ImageController {
         Image image = new Image();
         image.setNom(imageUploadDTO.getNom());
         image.setDescription(imageUploadDTO.getDescription());
-        image.setUrl(imageUploadDTO.getUrl());  // Assurez-vous que ImageUploadDTO contient bien `url`
+        image.setUrl(imageUploadDTO.getUrl());
         image.setUtilisateur(user);
         image.setDateUpload(LocalDateTime.now());
 
