@@ -27,8 +27,19 @@ public class CategorieController {
         return categorieService.getAllCategories();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Categorie> getCategorieById(@PathVariable Long id) {
+        return categorieService.getCategorieById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
     @PostMapping
     public ResponseEntity<Categorie> createCategorie(@RequestBody Categorie categorie) {
         return ResponseEntity.ok(categorieService.createCategorie(categorie));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCategorie(@PathVariable Long id) {
+        categorieService.deleteCategorie(id);
+        return ResponseEntity.ok("Catégorie supprimée avec succès !");
     }
 }

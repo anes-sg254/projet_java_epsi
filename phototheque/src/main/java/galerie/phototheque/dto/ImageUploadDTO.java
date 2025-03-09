@@ -10,6 +10,7 @@ public class ImageUploadDTO {
     private String description;
     private String url;
     private Long userId;
+    private Long categorieId;
 
     public String getNom() {
         return this.nom;

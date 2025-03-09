@@ -52,5 +52,19 @@ public class User {
         return this.id;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

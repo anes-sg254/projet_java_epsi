@@ -44,6 +44,10 @@ public class UserController {
         User savedUser = userService.saveUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
+    @GetMapping("/latest")
+    public ResponseEntity<List<User>> getLatestUsers() {
+        return ResponseEntity.ok(userService.getLatestUsers());
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         if (userService.deleteUser(id)) {

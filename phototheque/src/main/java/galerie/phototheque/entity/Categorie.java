@@ -14,4 +14,8 @@ public class Categorie {
 
     @Column(nullable = false, unique = true)
     private String nom;
+
+    public String getNom() {
+        return nom;
+    }
 }

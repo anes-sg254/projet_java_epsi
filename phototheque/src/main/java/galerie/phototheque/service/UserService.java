@@ -1,11 +1,10 @@
 package galerie.phototheque.service;
-import galerie.phototheque.dto.*;
+
 import galerie.phototheque.entity.User;
 import galerie.phototheque.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +14,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository){
         this.userRepository = userRepository;
     }
 
@@ -32,7 +30,6 @@ public class UserService {
         if (user.getEmail() == null || user.getEmail().isEmpty()) {
             throw new IllegalArgumentException("Email cannot be null or empty");
         }
-
         return userRepository.save(user);
     }
 
@@ -43,7 +40,9 @@ public class UserService {
         }
         return userRepository.save(user);
     }
-
+    public List<User> getLatestUsers() {
+        return userRepository.findTop10ByActifTrueOrderByIdDesc();
+    }
 
     public boolean deleteUser(Long id) {
         Optional<User> userOpt = userRepository.findById(id);
@@ -55,6 +54,4 @@ public class UserService {
         }
         return false;
     }
-
 }
-

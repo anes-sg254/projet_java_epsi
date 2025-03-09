@@ -6,12 +6,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-
 public class ImageService {
 
     private final ImageRepository imageRepository;
@@ -19,10 +21,12 @@ public class ImageService {
     private final UserRepository userRepository;
 
 
+    private ImageRecognitionService imageRecognitionService;
     @Autowired
-    public ImageService(ImageRepository imageRepository, UserRepository userRepository) {
+    public ImageService(ImageRepository imageRepository, UserRepository userRepository,ImageRecognitionService imageRecognitionService) {
         this.imageRepository = imageRepository;
         this.userRepository=userRepository;
+        this.imageRecognitionService=imageRecognitionService;
     }
     public List<Image> getUserImages(User user) {
         return imageRepository.findByUtilisateurAndActifTrue(user);
@@ -58,6 +62,25 @@ public class ImageService {
         image.setDescription(description);
         imageRepository.save(image);
     }
+
+    public String uploadAndAnalyzeImage(String filename, byte[] imageBytes) {
+
+        String signedUrl = imageRecognitionService.generateSignedUrl(filename);
+        imageRecognitionService.uploadImageToSignedUrl(signedUrl, imageBytes);
+        return imageRecognitionService.getImageDescription(filename);
+    }
+    public void saveBase64Image(String base64, String filename) throws IOException {
+        byte[] decodedBytes = Base64.getDecoder().decode(base64);
+        try (FileOutputStream fos = new FileOutputStream("uploads/" + filename)) {
+            fos.write(decodedBytes);
+        }
+    }
+
+    public String uploadAndAnalyzeImage(String imageUrl) {
+        return imageRecognitionService.analyzeImage(imageUrl);
+    }
+
+
 
 
     public void deleteImage(Long id) {
