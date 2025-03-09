@@ -63,10 +63,14 @@ public class ImageService {
         imageRepository.save(image);
     }
 
-    public String uploadAndAnalyzeImage(String filename, byte[] imageBytes) {
+    public String uploadAndAnalyzeImage(String filename, byte[] imageData) {
 
         String signedUrl = imageRecognitionService.generateSignedUrl(filename);
-        imageRecognitionService.uploadImageToSignedUrl(signedUrl, imageBytes);
+
+
+        imageRecognitionService.uploadImageToSignedUrl(signedUrl, imageData);
+
+
         return imageRecognitionService.getImageDescription(filename);
     }
     public void saveBase64Image(String base64, String filename) throws IOException {

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -51,6 +53,23 @@ public class ImageController {
         image.setDateUpload(LocalDateTime.now());
 
         return ResponseEntity.ok(imageService.uploadImage(image));
+    }
+
+    @PostMapping("/uploadAndDetect")
+    public ResponseEntity<String> uploadAndDetect(@RequestParam("file") MultipartFile file) {
+        try {
+            String filename = file.getOriginalFilename();
+            byte[] imageBytes = file.getBytes();
+
+            // Appelle le service pour upload et analyser l'image
+            String description = imageService.uploadAndAnalyzeImage(filename, imageBytes);
+
+            return ResponseEntity.ok(description);
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Erreur lors de l'upload et de l'analyse : " + e.getMessage());
+        }
     }
 
 
